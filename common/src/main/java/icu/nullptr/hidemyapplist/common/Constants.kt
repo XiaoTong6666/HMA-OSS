@@ -31,6 +31,7 @@ object Constants {
     const val MANAGER_WORK_MODE_NO_HOOKS = 2
     const val MANAGER_WORK_MODE_LOADING = 3
     const val MANAGER_WORK_MODE_CRASHED = 4
+    const val MANAGER_WORK_MODE_PARTIAL = 5
 
     const val PARCEL_TYPE_LOG = 0
     const val PARCEL_TYPE_CONFIG = 1

@@ -61,9 +61,9 @@
     <string name="home_update">Update: %s</string>
     <string name="home_migrate_data_fix_button">Fix the issue</string>
     <string name="home_migrate_data">Migrate data</string>
-    <string name="home_migrate_data_summary">You will also be prompted to uninstall HMA/HMAL in both options. Do you want to migrate the old data?</string>
-    <string name="home_migrate_data_failed">Failed to copy the data or found more than one HMA/HMAL.</string>
-    <string name="home_migrate_data_completed">Done! You need to reboot your device.</string>
+    <string name="home_migrate_data_summary">You can migrate the old configuration, then choose whether to uninstall the old app. Uninstalling is not required to use HMA-OSS if the old module is disabled.</string>
+    <string name="home_migrate_data_failed">Could not import the old configuration.</string>
+    <string name="home_migrate_data_completed">Configuration imported. Reboot to apply all hooks. The old app has not been uninstalled.</string>
     <string name="home_migrate_uninstall_only">Uninstall only</string>
 
     <!-- Backup & Restore -->
@@ -290,5 +290,13 @@
 
     <string name="sick_mode_title">Sick mode is activated</string>
     <string name="sick_mode_description">HMA-OSS detected possibly conflictable modules and limited its functionality</string>
-    <string name="sick_mode_notice">HMA/HMAL configs are compatible with HMA-OSS and you can begin to use with your existing config but you need to uninstall HMA/HMAL then reboot at first</string>
+    <string name="hook_installation_failed_title">Hook initialization failed</string>
+    <string name="hook_installation_failed_description">The backend reported a hook installation failure. Check the log for the failing method; this does not by itself prove a conflict with another module.</string>
+    <string name="backend_diagnostic_details">Backend version: %1$s · %2$s · workMode=%3$d</string>
+    <string name="sick_mode_notice">HMA/HMAL configuration can be imported into HMA-OSS. Uninstalling the old manager is optional; check whether its hooks are enabled before running both backends.</string>
+    <string name="conflict_notice_title">Another HMA app is installed</string>
+    <string name="conflict_installed_only">%1$s: activation unknown; HMA-OSS remains available.</string>
+    <string name="conflict_inactive">%1$s: not enabled; no effect on HMA-OSS.</string>
+    <string name="conflict_potential">%1$s: enabled for system; hooks may conflict.</string>
+    <string name="conflict_partial_hooks">Some hooks failed to install; other hooks remain available. See the log for affected methods. A conflict with another module is not yet confirmed.</string>
 </resources>
