@@ -31,6 +31,9 @@ class BulkHooker {
     }
 
     var hooksWasCrashed = false
+    // A native hook failure can leave the target method in an unknown state.
+    // Unlike libxposed, do not continue installing hooks after such a failure.
+    val canContinueAfterHookFailure = false
 
     internal val hooks = ConcurrentHashMap<String, CopyOnWriteArrayList<HookElement>>()
 

@@ -37,17 +37,21 @@ class FixIssueAdapter(
         fun bind(packageName: String) {
             with(context.packageManager) {
                 val appInfo = ServiceClient.getPackageInfo(packageName, 0)?.applicationInfo
-                view.text = getApplicationLabel(appInfo!!)
-                view.binding.icon.setImageDrawable(getApplicationIcon(appInfo))
+                view.text = appInfo?.let { getApplicationLabel(it).toString() } ?: packageName
+                if (appInfo != null) {
+                    view.binding.icon.setImageDrawable(getApplicationIcon(appInfo))
+                }
+                view.binding.button.isVisible = appInfo != null
             }
 
             @SuppressLint("UseCompatLoadingForDrawables")
             with(view.binding.button as MaterialButton) {
-                isVisible = true
+                if (!isVisible) return
                 icon = resources.getDrawable(
-                    R.drawable.outline_delete_24,
+                    R.drawable.outline_settings_backup_restore_24,
                     context.theme,
                 )
+                text = context.getString(R.string.home_migrate_data)
 
                 insetLeft = 0
                 insetTop = 0
@@ -64,27 +68,22 @@ class FixIssueAdapter(
                         ) + "\n\n" + context.getString(
                             R.string.home_migrate_data_summary
                         ))
-                        .setPositiveButton(R.string.yes) { _, _ ->
-                            migrateOrUninstallOnly(true, packageName)
+                        .setPositiveButton(R.string.home_migrate_data) { _, _ ->
+                            if (ServiceClient.migrateData(packageName)) {
+                                ServiceClient.reloadConfigFromFile()
+                                showMigrateStatusDialog(true)
+                            } else {
+                                showMigrateStatusDialog(false)
+                            }
                         }
                         .setNegativeButton(android.R.string.cancel, null)
                         .setNeutralButton(R.string.home_migrate_uninstall_only) { _, _ ->
-                            migrateOrUninstallOnly(false, packageName)
+                            uninstallPackage(packageName)
                         }
                         .show()
                 }
             }
         }
-    }
-
-    private fun migrateOrUninstallOnly(migrateData: Boolean, packageName: String) {
-        if (migrateData && !ServiceClient.migrateData(packageName)) {
-            showMigrateStatusDialog(false)
-            return
-        }
-
-        uninstallPackage(packageName)
-        showMigrateStatusDialog(true)
     }
 
     private fun uninstallPackage(packageName: String) = context.startActivity(

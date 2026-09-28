@@ -3,16 +3,10 @@ package org.frknkrc44.hma_oss.zygote.util
 import android.content.Intent
 import android.content.pm.IPackageManager
 import android.content.pm.ResolveInfo
-import icu.nullptr.hidemyapplist.common.Utils.conflictedModules
 import org.frknkrc44.hma_oss.zygote.util.ContextUtils.packageManager
 import org.frknkrc44.hma_oss.zygote.util.ZLUtils.callMethodWithTypes
 
 object PackageManagerUtils {
-    fun IPackageManager.isConflictingModuleInstalled(): Boolean {
-        // we shouldn't apply hooks when the HMA/HMAL detected
-        return conflictedModules.any { isPackageAvailable(it, 0) }
-    }
-
     // This part is a copy of Android code
     fun getLaunchIntentForPackageAsUser(packageName: String, userId: Int): Intent? {
         val intentToResolve = Intent(Intent.ACTION_MAIN).apply {

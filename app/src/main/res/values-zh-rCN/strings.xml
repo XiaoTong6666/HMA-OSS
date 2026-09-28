@@ -56,10 +56,10 @@
     <string name="home_new_update">检测到新版本： %s</string>
     <string name="home_update">更新： %s</string>
     <string name="home_migrate_data_fix_button">一键修复</string>
-    <string name="home_migrate_data">一键修复</string>
-    <string name="home_migrate_data_summary">此操作将卸载其它HMA分支，在这之前，是否将其数据迁移到HMA-OSS？</string>
-    <string name="home_migrate_data_failed">迁移数据失败：检测到多个其他HMA分支</string>
-    <string name="home_migrate_data_completed">修复完成！需要重启设备。</string>
+    <string name="home_migrate_data">迁移数据</string>
+    <string name="home_migrate_data_summary">可以选择迁移旧配置，或单独卸载旧应用。仅迁移不会卸载原版；原版模块未启用时无需卸载。</string>
+    <string name="home_migrate_data_failed">旧配置迁移失败。</string>
+    <string name="home_migrate_data_completed">配置已迁移，重启后可应用全部 Hook。原版应用没有被卸载。</string>
     <string name="home_migrate_uninstall_only">仅卸载</string>
     <!-- Backup & Restore -->
     <string name="backup_restore_backup_settings">备份配置</string>
@@ -255,5 +255,13 @@
     <string name="dark_theme_on">始终开启</string>
     <string name="sick_mode_title">安全模式</string>
     <string name="sick_mode_description">HMA-OSS 检测到同类模块（原版隐藏应用列表或其分支），为避免冲突已禁用自身核心功能</string>
-    <string name="sick_mode_notice"></string>
+    <string name="hook_installation_failed_title">Hook 初始化失败</string>
+    <string name="hook_installation_failed_description">后端报告 Hook 安装失败，请查看日志中的具体方法；这不等于已证实与其他模块冲突。</string>
+    <string name="backend_diagnostic_details">后端版本：%1$s · %2$s · workMode=%3$d</string>
+    <string name="sick_mode_notice">可以将原版 HMA/HMAL 的配置迁移至 HMA-OSS。旧版未启用时，无需为了使用 HMA-OSS 而卸载它。</string>
+    <string name="conflict_notice_title">已安装其他 HMA</string>
+    <string name="conflict_installed_only">%1$s：启用状态未知，可继续使用。</string>
+    <string name="conflict_inactive">%1$s：未启用，不影响当前使用。</string>
+    <string name="conflict_potential">%1$s：已启用 system 作用域，可能发生 Hook 冲突。</string>
+    <string name="conflict_partial_hooks">部分 Hook 安装失败，其余功能继续运行。请在日志中查看具体方法；不能据此直接认定与其他模块冲突。</string>
 </resources>

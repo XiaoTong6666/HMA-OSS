@@ -13,6 +13,9 @@ class BulkHooker {
 
     var hooksWasCrashed = false
         private set
+    // libxposed reports individual installation failures without requiring
+    // the other successful HookHandles to be discarded.
+    val canContinueAfterHookFailure = true
     internal val hooks = ConcurrentHashMap<String, CopyOnWriteArrayList<HookElement>>()
 
     internal fun isHookAvailable(clazz: String, method: String) =
@@ -51,7 +54,7 @@ class BulkHooker {
                 logI(TAG) { "Installed: $method" }
             } catch (error: Throwable) {
                 hooksWasCrashed = true
-                logE(TAG, error) { "Hook installation failed: $method" }
+                logE(TAG, error) { "Hook installation failed (other hooks remain enabled): $method" }
             }
         }
     }

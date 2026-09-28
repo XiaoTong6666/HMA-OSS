@@ -33,6 +33,11 @@
             android:orientation="vertical">
 
             <include
+                android:id="@+id/conflict_card"
+                layout="@layout/view_conflict_notice"
+                android:visibility="gone" />
+
+            <include
                 android:id="@+id/status_card"
                 layout="@layout/view_status_card" />
 
